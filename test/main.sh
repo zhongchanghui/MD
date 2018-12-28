@@ -35,4 +35,33 @@
 
 
 
+function Stop_Raid (){
+        tok mdadm --stop "$MD_RAID"
+        if [ $? -ne 0 ]; then
+                tlog "FAIL: fail to stop md raid $MD_RAID."
+                exit 1
+        fi
+}
 
+function runtest (){
+
+
+
+
+                MD_Clean_RAID $MD_RAID
+
+        done
+
+        remove_disks "$devlist"
+        if [ $? -ne 0 ];then
+                exit 1
+        fi
+}
+
+tlog "running $0"
+trun "rpm -q mdadm || yum install -y mdadm"
+trun "uname -a"
+runtest
+
+tend
+        
